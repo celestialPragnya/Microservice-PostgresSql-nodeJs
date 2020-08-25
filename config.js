@@ -1,4 +1,4 @@
 var config = {
-    PORT : 5000
+    PORT : 5050
 }
 module.exports = config ;

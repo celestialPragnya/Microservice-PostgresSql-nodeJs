@@ -1,4 +1,4 @@
-var sequalizepool = require('../db');
+//var sequalizepool = require('../db');
 var pool = require('../dbpool');
 var bcrypt = require('bcrypt');
 
@@ -6,7 +6,7 @@ exports.SignIn = (req,res,next) =>{
     const requestEmail = req.body.email
     pool.query("SELECT * FROM users WHERE email=$1",[requestEmail])
     .then(resp => {
-        console.log("Compare password", bcrypt.compare(req.body.password, resp.rows[0].password));
+        //console.log("Compare password", bcrypt.compare(req.body.password, resp.rows[0].password));
        
         bcrypt.compare(req.body.password, resp.rows[0].password, function(err, isMatch) {
             if (err) {
@@ -24,6 +24,7 @@ exports.SignIn = (req,res,next) =>{
                 })
             }
           })
+          
     })
     .catch(error => {
         res.json({
@@ -38,11 +39,11 @@ exports.SignUp = (req,res,next) =>{
     var requestEmail = req.body.email;
     pool.query("SELECT * FROM users WHERE email=$1",[requestEmail])
     .then(userResult=> {
-      console.log("user result &&&&",userResult);
+      //console.log("user result &&&&",userResult);
         if(userResult.rows.length){
 
             res.json({
-                status : true,
+                status : 201,
                 message : "Email Id is already present"
             })
 
@@ -55,7 +56,7 @@ exports.SignUp = (req,res,next) =>{
                     throw new Error(err);
                 }else{
                     res.json({
-                        status: true,
+                        status: 200,
                         message: "Registration Successful"
                     })
                 }
