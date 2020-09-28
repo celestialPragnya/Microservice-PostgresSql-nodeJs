@@ -1,6 +1,7 @@
 //import pool from '../dbpool';
 //import bcrypt from 'bcrypt';
 import {User, UserRequestAttributes} from '../models/user';
+import { Request, Response }  from "express";
 import models from '../models';
 
 
@@ -9,7 +10,7 @@ import models from '../models';
 //       where: { username: login },
 //     });
 
-export const SignIn  =  async (req:any , res:any , next:any) => {
+export const SignIn  =  async (req:Request , res:Response , next:any) => {
    // console.log("print user@@@@@@@@@@@@ ",req.body.email);
     //console.log("print password%%%%%%%%%%%% ",req.body.password);
     try {
@@ -73,7 +74,7 @@ export const SignIn  =  async (req:any , res:any , next:any) => {
 //     })
 // };
 
- export const SignUp = async (req:any,res:any,next:any) =>{   
+ export const SignUp = async (req:Request , res:Response,next:any) =>{   
     try {
         const userDetails: UserRequestAttributes = req.body;
         const newUser: User = await models.User.create(userDetails);

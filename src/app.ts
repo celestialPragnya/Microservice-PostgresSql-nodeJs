@@ -1,5 +1,5 @@
 import  config from "./config"
-import  express from "express";
+import  express , { Request, Response }  from "express";
 var app = express();
 import route from './router/route';
 import bodyParser from 'body-parser';
@@ -7,7 +7,7 @@ import bodyParser from 'body-parser';
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 
-app.get('/', function (req:any , res:any) {
+app.get('/', function (req , res) {
     res.json({
         status: true,
         message: "Welcome"
